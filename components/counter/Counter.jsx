@@ -1,12 +1,11 @@
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import React, { Component, useState, useEffect } from "react";
-import { increment, decrement } from "../../features/counter/counterSlice";
+import { decrement, increment } from "./counterSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Counter() {
-  let count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
-
+  let count = useSelector((store) => store.counter.value);
+  let dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <Text style={{ color: "white", marginTop: 50 }}>The Best Counter</Text>

@@ -1,23 +1,21 @@
 import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
 import React, { useState } from "react";
 import Checkbox from "expo-checkbox";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteTask, checkTask, editTask, modifyTask } from "./toDo";
 
-export default function Output({ taskList, setTaskList }) {
+export default function Output() {
+  let taskList = useSelector((state) => state.toDo.taskList);
+  let dispatch = useDispatch();
   const [newTaskVal, setNewTaskVal] = useState("");
   function deleteBtnHandler(index) {
-    let myList = [...taskList];
-    myList.splice(index, 1);
-    setTaskList(myList);
+    dispatch(deleteTask(index));
   }
   function cbHandler(index) {
-    let myList = [...taskList];
-    myList[index].isChecked = !myList[index].isChecked;
-    setTaskList(myList);
+    dispatch(checkTask(index));
   }
   function editBtnHandler(index) {
-    let myList = [...taskList];
-    myList[index].isEditable = !myList[index].isEditable;
-    setTaskList(myList);
+    dispatch(editTask(index));
   }
   function newTaskInputHandler(text) {
     setNewTaskVal(text);
@@ -29,9 +27,7 @@ export default function Output({ taskList, setTaskList }) {
       isChecked: false,
       isEditable: false,
     };
-    let myList = [...taskList];
-    myList.splice(index, 1, newTask);
-    setTaskList(myList);
+    dispatch(modifyTask({ index, newTask }));
   }
   return (
     <View>

@@ -1,7 +1,9 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
+import { useSelector } from "react-redux";
 
-export default function Header({ taskList }) {
+export default function Header() {
+  let taskList = useSelector((state) => state.toDo.taskList);
   return (
     <View style={styles.header}>
       <Text style={styles.headerText}>Total: {taskList.length}</Text>

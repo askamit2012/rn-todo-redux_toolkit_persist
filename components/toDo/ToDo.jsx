@@ -5,42 +5,12 @@ import Output from "./Output";
 import Header from "./Header";
 
 export default function ToDo() {
-  const [taskVal, setTaskVal] = useState("");
-  const [taskList, setTaskList] = useState([
-    {
-      id: "1",
-      task: "Feed The Cat",
-      isChecked: true,
-      isEditable: false,
-    },
-    {
-      id: "2",
-      task: "Walk The Dog",
-      isChecked: true,
-      isEditable: false,
-    },
-    {
-      id: "3",
-      task: "Do Laundry",
-      isChecked: false,
-      isEditable: false,
-    },
-    {
-      id: "4",
-      task: "Complete the ToDo App",
-      isChecked: false,
-      isEditable: false,
-    },
-  ]);
   return (
     <View style={styles.toDo}>
-      <Header taskList={taskList} />
-      <Input
-        style={styles.input}
-        taskList={taskList}
-        setTaskList={setTaskList}
-      />
-      <Output taskList={taskList} setTaskList={setTaskList} />
+      <Header />
+      <Input style={styles.input} />
+      <Output />
+      <Text style={{ color: "#FFF" }}>Let's ToDo using Redux Toolkit</Text>
     </View>
   );
 }

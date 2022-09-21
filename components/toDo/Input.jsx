@@ -8,13 +8,14 @@ import {
   Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "./toDo";
 
-export default function Input({ taskList, setTaskList }) {
+export default function Input() {
   const [showTaskInput, setShowTaskInput] = useState(false);
   const [taskInput, setTaskInput] = useState("");
-  // useEffect(() => {
-  //   console.log("Using use Effect");
-  // }, [taskList]);
+  let dispatch = useDispatch();
+
   // ***************** Alert Function **************
   const createTwoButtonAlert = () => {
     Alert.alert("Warning", "Task Cannot Be Empty!", [
@@ -38,9 +39,7 @@ export default function Input({ taskList, setTaskList }) {
         isChecked: false,
         isEditable: false,
       };
-      let myList = taskList;
-      myList.push(newTask);
-      setTaskList([...myList]);
+      dispatch(addTask(newTask));
       setTaskInput("");
     }
   }
